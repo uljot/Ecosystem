@@ -1,14 +1,17 @@
 import javax.swing.*;
 
 public class SmallAnimal extends Thread{
-    private String name;
     private double capacity = 50, mass = 3, hunger = capacity, hDegree = 0.5, biteCapacity = 3;
+    private final int ID;
+    private int maxSpeed = 7;
+    private int xSize = 30, ySize = 44;
     private long  hTimer;
+    private int awarenessRadius = 80, reachRadius = 40;
     private ImageIcon pic;
     //group <- how tf is this supposed to work
 
-    public SmallAnimal(String name, long hTimer){
-        this.name = name;
+    public SmallAnimal(int id, long hTimer){
+        this.ID = id;
         this.hTimer = hTimer;
         this.pic = new ImageIcon("rabbit-small-animal.png");
     }
@@ -19,9 +22,6 @@ public class SmallAnimal extends Thread{
 
     public void run(){
         while (hunger > 0) {
-            if(this.isInterrupted()){
-                break;
-            }
             try {
                 Thread.sleep(hTimer);
             } catch (InterruptedException e) {}
@@ -40,6 +40,6 @@ public class SmallAnimal extends Thread{
 
     @Override
     public String toString() {
-        return "Small animal: " + name + " Hunger Status: " + hunger;
+        return "Small animal: " + ID + " Hunger Status: " + hunger;
     }
 }

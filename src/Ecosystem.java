@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class Ecosystem extends JFrame{
@@ -7,11 +8,20 @@ public class Ecosystem extends JFrame{
     private static final int DIM_Y = 600;
     private static final int UPDATE = 20;
     JButton smallButton, largeButton, foodButton;
+
+    private ArrayList<SmallAnimal> smallAnimals;
+    private ArrayList<LargeAnimal> largeAnimals;
+    private ArrayList<Corpse> food;
+
     private Canvas canvas;
 
     private Timer timer;
 
-    public Ecosystem(){
+    public Ecosystem(int smAn){
+        smallAnimals = new ArrayList(smAn);
+        for (int i=0; i < smallAnimals.size(); i++){
+            smallAnimals.add(new SmallAnimal(i, 1));
+        }
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(DIM_X, DIM_Y));
         this.setContentPane(canvas);
@@ -53,7 +63,7 @@ public class Ecosystem extends JFrame{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Ecosystem();
+                new Ecosystem(5);
             }
         });
     }

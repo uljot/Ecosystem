@@ -1,46 +1,28 @@
+import javax.swing.*;
+
 public class SmallAnimal extends Thread{
     private String name;
     private double capacity = 50, mass = 3, hunger = capacity, hDegree = 0.5, biteCapacity = 3;
     private long  hTimer;
-    boolean lookFood = false;
+    private ImageIcon pic;
     //group <- how tf is this supposed to work
 
     public SmallAnimal(String name, long hTimer){
         this.name = name;
         this.hTimer = hTimer;
+        this.pic = new ImageIcon("rabbit-small-animal.png");
     }
 
-    private void die(){
-        //create new Corpse(double mass)
-        System.out.println("Small animal " + name + " DIES of hunger!");
-        this.interrupt(); //<- is it still working? IT DOESN'T SEEM SO
-    }
-
-    private void switchLookFood(){
-        lookFood = !lookFood;
-    }
-
-    public boolean getHungerStatus(){
-        return lookFood;
-    }
-
-    private void takeBite(){
-        if(hunger + biteCapacity <= capacity) {
-            hunger += biteCapacity;
-        } else {hunger = capacity;}
+    public ImageIcon getPic(){
+        return pic;
     }
 
     public void run(){
-        while (true) {
+        while (hunger > 0) {
             if(this.isInterrupted()){
                 break;
             }
             try {
-                System.out.println(this.toString());
-                if (hunger <= 0){
-                    die();
-                }
-                hunger -= 1;
                 Thread.sleep(hTimer);
             } catch (InterruptedException e) {}
             //decrease hunger by hTime by (1)

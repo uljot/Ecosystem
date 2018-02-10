@@ -6,7 +6,7 @@ public class Ecosystem extends JFrame{
     private static final int DIM_X = 800;
     private static final int DIM_Y = 600;
     private static final int UPDATE = 20;
-    JButton smallButton, largeButton;
+    JButton smallButton, largeButton, foodButton;
     private Canvas canvas;
 
     private Timer timer;
@@ -23,10 +23,12 @@ public class Ecosystem extends JFrame{
         JLabel background=new JLabel(new ImageIcon("grass-pattern-CROP.png"));
         add(background);
         background.setLayout(new FlowLayout());
-        smallButton=new JButton("Add a small animal!");
-        largeButton=new JButton("Add a large animal!");
+        smallButton = new JButton("Add a small animal!");
+        largeButton = new JButton("Add a large animal!");
+        foodButton = new JButton("Add some food!");
         background.add(smallButton);
         background.add(largeButton);
+        background.add(foodButton);
         ActionListener zadanie = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -44,7 +46,6 @@ public class Ecosystem extends JFrame{
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            setBackground(Color.WHITE);
         }
     }
 

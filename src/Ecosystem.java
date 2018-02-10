@@ -20,7 +20,9 @@ public class Ecosystem extends JFrame{
     public Ecosystem(int smAn){
         smallAnimals = new ArrayList(smAn);
         for (int i=0; i < smallAnimals.size(); i++){
-            smallAnimals.add(new SmallAnimal(i, 1));
+            smallAnimals.add(new SmallAnimal(i));
+            smallAnimals.get(i).setPosX((int)Math.random()*800 + 1);
+            smallAnimals.get(i).setPosY((int)Math.random()*600 + 1);
         }
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(DIM_X, DIM_Y));
@@ -39,14 +41,14 @@ public class Ecosystem extends JFrame{
         background.add(smallButton);
         background.add(largeButton);
         background.add(foodButton);
-        ActionListener zadanie = new ActionListener() {
+        ActionListener task = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 update();
                 repaint();
             }
         };
-        timer = new Timer(UPDATE, zadanie);
+        timer = new Timer(UPDATE, task);
         timer.start();
     }
 
@@ -56,6 +58,10 @@ public class Ecosystem extends JFrame{
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
+            for (SmallAnimal animal:smallAnimals
+                 ) {
+                animal.getPic().paintIcon(this, g, animal.getPosX(), animal.getposY());
+            }
         }
     }
 

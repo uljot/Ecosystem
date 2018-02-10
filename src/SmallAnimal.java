@@ -3,17 +3,33 @@ import javax.swing.*;
 public class SmallAnimal extends Thread{
     private double capacity = 50, mass = 3, hunger = capacity, hDegree = 0.5, biteCapacity = 3;
     private final int ID;
+    private int posX, posY;
     private int maxSpeed = 7;
     private int xSize = 30, ySize = 44;
-    private long  hTimer;
+    private long  hTimer = 1000;
     private int awarenessRadius = 80, reachRadius = 40;
     private ImageIcon pic;
     //group <- how tf is this supposed to work
 
-    public SmallAnimal(int id, long hTimer){
+    public SmallAnimal(int id){
         this.ID = id;
-        this.hTimer = hTimer;
-        this.pic = new ImageIcon("rabbit-small-animal.png");
+        this.pic = new ImageIcon(this.getClass().getResource("rabbit-small-animal.png"));
+    }
+
+    public void setPosX(int posX){
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY){
+        this.posY = posY;
+    }
+
+    public int getPosX(){
+        return posX;
+    }
+
+    public int getposY(){
+        return posY;
     }
 
     public ImageIcon getPic(){
